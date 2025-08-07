@@ -1,0 +1,58 @@
+---
+
+fabric_name: FABRIC
+
+# Various fabric settings
+
+# Enable vlan aware bundles
+evpn_vlan_aware_bundles: false
+custom_structured_configuration_prefix: ['custom_']
+
+# There's an issue with vEOS with larger MTUs
+p2p_uplinks_mtu: 1500
+
+# BFD Settings
+bfd_multihop:
+  interval: 1200
+  min_rx: 1200
+  multiplier: 3
+
+
+# # If you want to put a password on peers
+# bgp_peer_groups:
+#   # all passwords set to "arista"
+#   evpn_overlay_peers:
+#     password: Q4fqtbqcZ7oQuKfuWtNGRQ==
+#   ipv4_underlay_peers:
+#     password: 7x4B4rnJhZB438m9+BrBfQ==
+#   mlag_ipv4_underlay_peer:
+#     password: 4b21pAdCvWeAqpcKDFMdWw==
+
+# Needed for vEOS/cEOS
+
+bgp_update_wait_install: false
+bgp_update_wait_for_convergence: false
+
+# Needed for Arista ATD Lab Environment
+dns_domain: atd.lab
+mgmt_interface: Management0
+mgmt_interface_vrf: MGMT
+mgmt_gateway: 192.168.0.1
+
+
+l3_edge:
+  p2p_links_ip_pools:
+    dci_evpn_gateway: 192.168.99.0/24
+  p2p_links:
+    - id: 1
+      ip_pool: dci_evpn_gateway
+      nodes: [borderleaf1, borderleaf2]
+      interfaces: [Ethernet1, Ethernet1]
+      as: [65198, 65298]
+      include_in_underlay_protocol: true
+    - id: 2
+      ip_pool: dci_evpn_gateway
+      nodes: [borderleaf1, borderleaf2]
+      interfaces: [Ethernet2, Ethernet2]
+      as: [65198, 65298]
+      include_in_underlay_protocol: true
