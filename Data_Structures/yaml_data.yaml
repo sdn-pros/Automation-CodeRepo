@@ -1,0 +1,8 @@
+---
+interfaces:
+  - name: Ethernet1
+    status: up
+    speed: 1000
+  - name: Ethernet2
+    status: down
+    speed: 1000

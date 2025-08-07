@@ -1,0 +1,21 @@
+import xmltodict
+
+xml_data = '''
+<interfaces>
+    <interface>
+    <name>Ethernet1</name>
+    <status>up</status>
+    <speed>1000</speed>
+    </interface>
+    <interface>
+    <name>Ethernet2</name>
+    <status>down</status>
+    <speed>1000</speed>
+    </interface>
+</interfaces>
+'''
+
+parsed = xmltodict.parse(xml_data)
+for intf in parsed['interfaces']['interface']:
+    if intf['status'] == 'up':
+        print(f"{intf['name']} is UP")

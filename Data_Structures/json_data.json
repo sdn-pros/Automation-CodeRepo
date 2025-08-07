@@ -1,0 +1,7 @@
+{
+    "fruits": [
+    {"name": "apple", "calories": 95},
+    {"name": "banana", "calories": 105},
+    {"name": "orange", "calories": 45}
+    ]
+}
