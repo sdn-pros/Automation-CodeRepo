@@ -12,7 +12,7 @@ evpn_vlan_aware_bundles: false
 spine:
   defaults:
     platform: vEOS-lab
-    mgmt_interface: Managemenmt1
+    mgmt_interface: Management1
     bgp_as: 65001
     loopback_ipv4_pool: 192.168.101.0/24
     mlag: false
@@ -32,7 +32,7 @@ l3leaf:
   defaults:
     bgp_as: 65100-65199 # Gives a range which will be auto-assigned
     platform: vEOS-lab
-    mgmt_interface: Managemenmt1
+    mgmt_interface: Management1
     loopback_ipv4_pool: 192.168.101.0/24 # This is loopback0 (underlay)
     vtep_loopback_ipv4_pool: 192.168.102.0/24 # This is loopback1 (VTEP)
     uplink_interfaces: [Ethernet3, Ethernet4, Ethernet5] # Leaf uplinks
