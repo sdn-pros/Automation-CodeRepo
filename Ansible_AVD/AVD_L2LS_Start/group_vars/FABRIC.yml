@@ -1,0 +1,87 @@
+---
+
+# Fabric Name
+fabric_name: FABRIC
+
+# Set Design Type to L2ls
+design:
+  type: l2ls
+
+# Repeat MLAG addressing between pairs
+fabric_ip_addressing:
+  mlag:
+    algorithm: same_subnet
+
+
+# Spine Switches
+l3spine:
+  defaults:
+    platform: vEOS-lab
+    mgmt_interface: Management1
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 4096
+    loopback_ipv4_pool: 10.1.252.0/24
+    mlag_peer_ipv4_pool: 10.1.253.0/31
+    mlag_peer_l3_ipv4_pool: 10.1.253.2/31
+    virtual_router_mac_address: 00:1c:73:00:dc:01
+    mlag_interfaces: [ Ethernet1, Ethernet2 ]
+  node_groups: 
+  - group: SPINES
+    nodes:
+      - name: spine1
+        id: 1
+        mgmt_ip: 192.168.0.11/24
+      - name: spine2
+        id: 2
+        mgmt_ip: 192.168.0.12/24
+
+# Leaf Switches
+leaf:
+  defaults:
+    platform: vEOS-lab
+    mgmt_interface: Management1
+    mlag_peer_ipv4_pool: 10.1.253.0/31
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 16384
+    uplink_switches: [ spine1, spine2 ]
+    uplink_interfaces: [ Ethernet3, Ethernet4 ]
+    mlag_interfaces: [ Ethernet1, Ethernet2 ]
+  node_groups: 
+    - group: mlag1
+      filter:
+        tags: [ "Web" ]
+      nodes:
+        - name: leaf1
+          id: 1
+          mgmt_ip: 192.168.0.21/24
+          uplink_switch_interfaces: [Ethernet3, Ethernet3]
+        - name: leaf2
+          id: 2
+          mgmt_ip: 192.168.0.22/24
+          uplink_switch_interfaces: [Ethernet4, Ethernet4]
+    - group: mlag2
+      filter:
+        tags: [ "App" ]
+      nodes:
+        - name: leaf3
+          id: 3
+          mgmt_ip: 192.168.0.23/24
+          uplink_switch_interfaces: [Ethernet5, Ethernet5]
+        - name: leaf4
+          id: 4
+          mgmt_ip: 192.168.0.24/24
+          uplink_switch_interfaces: [Ethernet6, Ethernet6]
+
+
+# Point to Point Links MTU Override for Lab
+p2p_uplinks_mtu: 1500
+
+# Needed for Arista ATD Lab Environment
+dns_domain: atd.lab
+mgmt_interface: Management0
+mgmt_interface_vrf: MGMT
+mgmt_gateway: 192.168.0.1
+
+# Documentation
+eos_designs_documentation:
+  connected_endpoints: true
