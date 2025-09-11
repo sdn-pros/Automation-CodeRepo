@@ -1,0 +1,10 @@
+anta_inventory:
+  hosts:
+  - host: spine1
+  - host: spine2
+  - host: spine3
+  - host: leaf1
+  - host: leaf2
+  - host: leaf3
+  - host: leaf4
+
