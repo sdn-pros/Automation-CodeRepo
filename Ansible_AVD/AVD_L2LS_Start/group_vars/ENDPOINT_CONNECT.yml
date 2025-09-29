@@ -41,5 +41,5 @@ servers:
         switches: [ leaf3, leaf4 ]                   # Switch to connect server (required)
         profile: PP-VLAN20                           # Port profile to apply (required)
         port_channel:
-          description: PortChannel host2
+          description: PortChannel host3
           mode: active
