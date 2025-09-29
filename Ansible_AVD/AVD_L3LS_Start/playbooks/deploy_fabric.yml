@@ -1,12 +1,16 @@
 ---
 - name: Deploy fabric to CVP
-  hosts: cvp1
+  hosts: FABRIC
+  gather_facts: false
   tasks:
     - name: Provision CVP with AVD configuration
       ansible.builtin.import_role:
-        name: arista.avd.eos_config_deploy_cvp
+        name: arista.avd.cv_deploy
       vars:
-        container_root: 'FABRIC'
+        cv_server: 192.168.0.5
+        cv_username: "{{ hostvars['cvp1'].ansible_user }}"  
+        cv_password: "{{ hostvars['cvp1'].ansible_password }}"  
+        cv_verify_certs: false
         configlets_prefix: 'AVD'
         # apply_mode: strict # Don't use this unless AVD is the only source of configlets
         state: present
