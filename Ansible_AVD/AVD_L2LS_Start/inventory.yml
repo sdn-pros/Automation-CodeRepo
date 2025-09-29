@@ -17,7 +17,7 @@ all:
     FABRIC:
       vars:
         ansible_user: arista
-        ansible_ssh_pass: PASSWORD-GOES-HERE # If using SSH keys, this can be removed
+        ansible_password: PASSWORD-GOES-HERE # If using SSH keys, this can be removed
 # Use this section if you want to perform testing via the eAPI
         ansible_connection: httpapi
         ansible_httpapi_use_ssl: True
