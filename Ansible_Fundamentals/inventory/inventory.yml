@@ -1,0 +1,15 @@
+WORKSHOP_FABRIC:
+  children:
+    S1:
+      children:
+        S1_SPINES:
+          hosts:
+            spine1:
+            spine2:
+        S1_LEAFS:
+          hosts:
+            leaf1:
+            leaf2:
+            leaf3:
+            leaf4:
+
