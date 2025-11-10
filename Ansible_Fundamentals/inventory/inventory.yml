@@ -12,4 +12,7 @@ WORKSHOP_FABRIC:
             leaf2:
             leaf3:
             leaf4:
-
+    BORDER:
+      hosts:
+        borderleaf1:
+        borderleaf2:
