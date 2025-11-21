@@ -1,8 +1,10 @@
 ---
 vlans:
   - 10:
-    name: Ten
+      name: Ten
   - 20:
-    name: Twenty
+      name: Twenty
   - 30:
-    name: Thirty
+      name: Thirty
+  - 40:
+      name: Forty
