@@ -1,6 +1,6 @@
 ---
 tenants:
-  - name: ACME
+  - name: TENANT_A
     mac_vrf_vni_base: 10000
     vrfs:
       - name: VRF_A
