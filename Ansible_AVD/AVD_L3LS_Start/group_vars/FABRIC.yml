@@ -14,9 +14,6 @@ overlay_routing_protocol: ebgp
 # Enable vlan aware bundles
 evpn_vlan_aware_bundles: false
 
-# There's an issue with vEOS with larger MTUs
-p2p_uplinks_mtu: 1550
-
 # BFD Settings
 bfd_multihop:
   interval: 1200
