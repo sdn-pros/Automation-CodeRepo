@@ -3,15 +3,17 @@
 # Fabric Name
 fabric_name: FABRIC
 
-# Set Design Type to L2ls
-design:
-  type: l2ls
+# Documentation
+eos_designs_documentation:
+  connected_endpoints: true
 
 # Repeat MLAG addressing between pairs
 fabric_ip_addressing:
   mlag:
     algorithm: same_subnet
 
+# Point to Point Links MTU Override for Lab
+p2p_uplinks_mtu: 1500
 
 # Spine Switches
 l3spine:
@@ -71,17 +73,3 @@ leaf:
           id: 4
           mgmt_ip: 192.168.0.24/24
           uplink_switch_interfaces: [Ethernet6, Ethernet6]
-
-
-# Point to Point Links MTU Override for Lab
-p2p_uplinks_mtu: 1500
-
-# Needed for Arista ATD Lab Environment
-dns_domain: atd.lab
-mgmt_interface: Management0
-mgmt_interface_vrf: MGMT
-mgmt_gateway: 192.168.0.1
-
-# Documentation
-eos_designs_documentation:
-  connected_endpoints: true
