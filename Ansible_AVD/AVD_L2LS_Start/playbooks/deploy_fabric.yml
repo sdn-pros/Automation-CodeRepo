@@ -11,8 +11,4 @@
         cv_username: "{{ hostvars['cvp1'].ansible_user }}"  
         cv_password: "{{ hostvars['cvp1'].ansible_password }}"  
         cv_verify_certs: false
-        configlets_prefix: 'AVD_L2LS'
-        # apply_mode: strict # Don't use this unless AVD is the only source of configlets
-        state: present
-        execute_tasks: false # Set to true if you want the change to be made without a change control approval
-        cv_collection: v3
+        cv_run_change_control: false
