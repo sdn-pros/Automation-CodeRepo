@@ -40,7 +40,7 @@ all:
             spine2:
         LEAFS:
           vars: 
-            type: leaf
+            type: l2leaf
           hosts:
             leaf1:
             leaf2:
