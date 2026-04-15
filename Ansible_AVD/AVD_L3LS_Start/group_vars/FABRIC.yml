@@ -2,10 +2,31 @@
 
 fabric_name: FABRIC
 
-# Various fabric settings
+generate_cv_tags:
+  topology_hints: true
+
+dc_name: DC1
+pod_name: POD1  
+
+underlay_routing_protocol: ebgp
+overlay_routing_protocol: ebgp
 
 # Enable vlan aware bundles
 evpn_vlan_aware_bundles: false
+
+# There's an issue with vEOS with larger MTUs
+p2p_uplinks_mtu: 1550
+
+# BFD Settings
+bfd_multihop:
+  interval: 1200
+  min_rx: 1200
+  multiplier: 3
+
+# Needed for vEOS/cEOS
+bgp_update_wait_install: false
+bgp_update_wait_for_convergence: false
+p2p_uplinks_mtu: 1500
 
 
 # Spine Switches
@@ -16,6 +37,7 @@ spine:
     bgp_as: 65001
     loopback_ipv4_pool: 192.168.101.0/24
     mlag: false
+    cv_tags_topology_type: spine
   nodes:
     - name: spine1
       id: 11
@@ -27,7 +49,7 @@ spine:
       id: 13
       mgmt_ip: 192.168.0.13/24
 
-# Leaf switches. Most leafs will be l3leaf, not l2leaf.
+# Leaf switches
 l3leaf:
   defaults:
     bgp_as: 65100-65199 # Gives a range which will be auto-assigned
@@ -68,26 +90,3 @@ l3leaf:
           id: 4
           mgmt_ip: 192.168.0.24/24
           uplink_switch_interfaces: [Ethernet6, Ethernet6, Ethernet6]
-
-
-
-# There's an issue with vEOS with larger MTUs
-p2p_uplinks_mtu: 1550
-
-# BFD Settings
-bfd_multihop:
-  interval: 1200
-  min_rx: 1200
-  multiplier: 3
-
-
-# Needed for vEOS/cEOS
-
-bgp_update_wait_install: false
-bgp_update_wait_for_convergence: false
-
-# Needed for Arista ATD Lab Environment
-dns_domain: atd.lab
-mgmt_interface: Management0
-mgmt_interface_vrf: MGMT
-mgmt_gateway: 192.168.0.1
