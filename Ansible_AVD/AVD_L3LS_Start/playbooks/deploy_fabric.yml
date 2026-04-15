@@ -1,5 +1,5 @@
 ---
-- name: Deploy fabric to CVP
+- name: Deploy Configurations via CloudVision
   hosts: FABRIC
   gather_facts: false
   tasks:
@@ -9,10 +9,6 @@
       vars:
         cv_server: 192.168.0.5
         cv_username: "{{ hostvars['cvp1'].ansible_user }}"  
-        cv_password: "{{ hostvars['cvp1'].ansible_password }}"  
+        cv_password: "{{ hostvars['cvp1'].ansible_password }}" 
         cv_verify_certs: false
-        configlets_prefix: 'AVD'
-        # apply_mode: strict # Don't use this unless AVD is the only source of configlets
-        state: present
-        execute_tasks: false # Set to true if you want the change to be made without a change control approval
-        cv_collection: v3
+        cv_run_change_control: false
