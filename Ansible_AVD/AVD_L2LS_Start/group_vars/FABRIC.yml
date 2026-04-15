@@ -38,7 +38,7 @@ l3spine:
         mgmt_ip: 192.168.0.12/24
 
 # Leaf Switches
-leaf:
+l2leaf:
   defaults:
     platform: vEOS-lab
     mgmt_interface: Management1
